@@ -2,6 +2,16 @@
 
 Add git Action file
 
+# Add Express (Node js server)
+
+> 因為 vue cli build 出來的檔案只有純 html & js & css , heroku 不知道怎麼啟動 所以需要 Express
+
+```
+ npm install express serve-static --save
+```
+
+> Add Server.js ,and add package json command
+
 # 整合到 Heroku
 
 1. Heroku API Key
@@ -25,9 +35,10 @@ Add git Action file
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'vue-menu'
           heroku_email: 'mmx362003@gmail.com'
-          subfolder: 'dist'
+          procfile: 'web: npm start'
 ```
 
 reference:
 https://www.split.io/blog/node-js-continuous-deployment-jenkins-heroku/
 https://github.com/marketplace/actions/deploy-to-heroku
+https://www.codementor.io/@ravianand1988/easily-4-steps-to-continuous-delivery-auto-deploy-vue-js-app-on-heroku-xljk977pq

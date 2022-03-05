@@ -25,8 +25,9 @@ Add git Action file
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'vue-menu'
           heroku_email: 'mmx362003@gmail.com'
-          appdir: 'dist'
+          subfolder: 'dist'
 ```
 
 reference:
 https://www.split.io/blog/node-js-continuous-deployment-jenkins-heroku/
+https://github.com/marketplace/actions/deploy-to-heroku

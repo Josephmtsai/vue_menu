@@ -28,4 +28,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'vue-menu'
           heroku_email: 'mmx362003@gmail.com'
-          subfolder: 'dist'
+          appdir: './dist'

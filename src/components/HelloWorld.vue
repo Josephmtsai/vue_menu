@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <div class="font-bold text-7xl text-green-500 justify-center items-center">hello</div>
+    <div class="hidden md:block text-7xl">showing</div>
   </div>
 </template>
 

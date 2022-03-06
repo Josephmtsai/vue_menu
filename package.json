@@ -46,7 +46,14 @@
     "parserOptions": {
       "parser": "@babel/eslint-parser"
     },
-    "rules": {}
+    "rules": {
+      "max-len": [
+        "error",
+        {
+          "code": 1000
+        }
+      ]
+    }
   },
   "browserslist": [
     "> 1%",

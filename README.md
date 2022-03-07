@@ -38,7 +38,11 @@ Add git Action file
           procfile: 'web: npm start'
 ```
 
+Demo:
+https://vue-menu.herokuapp.com/
 reference:
 https://www.split.io/blog/node-js-continuous-deployment-jenkins-heroku/
+
 https://github.com/marketplace/actions/deploy-to-heroku
+
 https://www.codementor.io/@ravianand1988/easily-4-steps-to-continuous-delivery-auto-deploy-vue-js-app-on-heroku-xljk977pq

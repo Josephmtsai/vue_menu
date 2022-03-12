@@ -32,10 +32,10 @@
           <template #footer>{{ errorMessage }} </template>
         </n-card>
       </Field>
-      <Field v-slot="{ field, errorMessage }" name="AgreeTerms" type="text">
+      <Field v-slot="{ field, errorMessage }" name="AgreeTerms" type="checkbox" :unchecked-value="false" :value="true">
         {{ field }}
         <n-card class="bg-gray-200 border-solid border-2" title="AgreeTerms">
-          <n-checkbox v-model:checked="field.value" v-bind="field"> Agree Terms.... </n-checkbox>
+          <n-checkbox v-model:checked="field.checked" :on-update:checked="field.onChange"> Agree Terms.... </n-checkbox>
           <template #footer>{{ errorMessage }} </template>
         </n-card>
       </Field>
@@ -92,7 +92,7 @@ export default {
       PasswordConfirm: '123233a',
       Cities: [],
       UserName: 'joseph',
-      AgreeTerms: false,
+      AgreeTerms: true,
     };
     /*this.formValues = {
       Email: '',

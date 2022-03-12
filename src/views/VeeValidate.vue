@@ -1,39 +1,61 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <div class="container mx-auto p-4 phone:mx-auto tablet:mx-0 bg-gray-200">
-      <div class="rounded-sm p-1 lg:col-span-6 md:col-span-12">
-        <Form v-slot="v" ref="myForm" :validation-schema="schema" :initial-values="formValues" @submit="onSubmit">
-          <n-card title="myForm Value"> {{ v }}} </n-card>
-          <Field v-slot="{ field, errorMessage }" :validateOnInput="true" name="Password" type="Password">
-            <n-card title="Password">
-              <n-input type="password" v-bind="field" :model-value="field.value" show-password-on="mousedown" placeholder="Password" />
-              <template #footer>{{ errorMessage }} </template>
-            </n-card>
-          </Field>
-          <Field v-slot="{ field, errorMessage }" name="PasswordConfirm" type="Password">
-            <n-card title="Password Confirm">
-              <n-input type="password" v-bind="field" :model-value="field.value" show-password-on="mousedown" placeholder="Password Confirm" />
-              <template #footer>{{ errorMessage }} </template>
-            </n-card>
-          </Field>
-          <Field v-slot="{ field, errorMessage }" name="Email" type="text">
-            <n-card title="Email">
-              <n-input type="text" v-bind="field" :model-value="field.value" show-password-on="mousedown" placeholder="Email" />
-              <template #footer>{{ errorMessage }} </template>
-            </n-card>
-          </Field>
-          <!--<Field v-slot="{ field, errorMessage }" name="EmailOnBlur" type="text">
-            <n-card title="EmailOnBlur">
-              <n-input type="text" v-bind="field" @blur="emailOnBlurCheck(field.value)" :model-value="field.value" show-password-on="mousedown" placeholder="Email On Blur" />
-              <template #footer>{{ errorMessage }} </template>
-            </n-card>
-          </Field>-->
-          <n-button :disabled="!v.meta.valid" attr-type="submit">Submit</n-button>
-        </Form>
-      </div>
-    </div>
-  </div>
+  <section class="sm:bg-surface-light--darken-2 pb-[3rem] sm:py-[3rem]">
+    <Form class="w-full sm:min-w-[420px] sm:!max-w-[480px] mx-auto" v-slot="v" ref="myForm" :validation-schema="schema" :initial-values="formValues" @submit="onSubmit">
+      <n-card title="Form Info"> {{ v }}} </n-card>
+      <Field v-slot="{ field, errorMessage }" :validateOnInput="true" name="UserName" type="text">
+        <n-card class="bg-gray-200 border-solid border-2" title="UserName">
+          <n-input type="text" v-bind="field" show-password-on="mousedown" placeholder="UserName" />
+          <template #footer>{{ errorMessage }} </template>
+        </n-card>
+      </Field>
+      <Field v-slot="{ field, errorMessage }" :validateOnInput="true" name="Password" type="Password">
+        <n-card class="bg-gray-200 border-solid border-2" title="Password">
+          <n-input type="password" v-bind="field" show-password-on="mousedown" placeholder="Password" />
+          <template #footer>{{ errorMessage }} </template>
+        </n-card>
+      </Field>
+      <Field v-slot="{ field, errorMessage }" name="PasswordConfirm" type="Password">
+        <n-card class="bg-gray-200 border-solid border-2" title="Password Confirm">
+          <n-input type="password" v-bind="field" show-password-on="mousedown" placeholder="Password Confirm" />
+          <template #footer>{{ errorMessage }} </template>
+        </n-card>
+      </Field>
+      <Field v-slot="{ field, errorMessage }" :validateOnInput="false" :validateOnModelUpdate="false" :validateOnChange="false" name="Email" type="text">
+        <n-card class="bg-gray-200 border-solid border-2" title="Email">
+          <n-input type="text" :on-blur="field.onBlur" :value="field.value" :on-update:value="field.onChange" placeholder="Email" />
+          <template #footer>{{ errorMessage }} </template>
+        </n-card>
+      </Field>
+      <Field v-slot="{ field, errorMessage }" name="EmailOnBlur" type="text">
+        {{ field }}
+        <n-card class="bg-gray-200 border-solid border-2" title="EmailOnBlur">
+          <template #footer>{{ errorMessage }} </template>
+        </n-card>
+      </Field>
+      <Field v-slot="{ field, errorMessage }" name="AgreeTerms" type="text">
+        {{ field }}
+        <n-card class="bg-gray-200 border-solid border-2" title="AgreeTerms">
+          <n-checkbox v-model:checked="field.value" v-bind="field"> Agree Terms.... </n-checkbox>
+          <template #footer>{{ errorMessage }} </template>
+        </n-card>
+      </Field>
+      <Field v-slot="{ field, errorMessage }" name="Cities" type="text">
+        {{ field }}
+        <n-card class="bg-gray-200 border-solid border-2" title="Cities">
+          <n-checkbox-group :on-update:value="field.onChange" :value="field.value">
+            <n-space item-style="display: flex;">
+              <n-checkbox value="Beijing" label="Beijing" />
+              <n-checkbox value="Shanghai" label="Shanghai" />
+              <n-checkbox value="Guangzhou" label="Guangzhou" />
+              <n-checkbox value="Shenzen" label="Shenzhen" />
+            </n-space>
+          </n-checkbox-group>
+          <template #footer>{{ errorMessage }} </template>
+        </n-card>
+      </Field>
+      <n-button attr-type="submit">Submit</n-button>
+    </Form>
+  </section>
 </template>
 <script>
 import { getRandomUserData } from '@/api/sample.js';
@@ -53,16 +75,24 @@ export default {
   created() {
     this.schema = yup.object({
       Email: yup.string().required('Required').test('checkEmailExist', 'Not Valid', this.isAvaibledEmail),
+      EmailOnBlur: yup.string().required('Required'),
       Password: yup.string().required().min(6).max(15),
       PasswordConfirm: yup
         .string()
         .required()
         .oneOf([yup.ref('Password')], 'Passwords do not match'),
+      Cities: yup.array().of(yup.string().required()).required(),
+      UserName: yup.string().required().min(3),
+      AgreeTerms: yup.bool().isTrue(),
     });
     this.formValues = {
-      Email: 'mmx362003@gamil.com',
+      Email: 'mmx362003@gmail.com',
+      EmailOnBlur: 'mmx362003confirm@gmail.com',
       Password: '123233a',
       PasswordConfirm: '123233a',
+      Cities: [],
+      UserName: 'joseph',
+      AgreeTerms: false,
     };
     /*this.formValues = {
       Email: '',
@@ -76,10 +106,10 @@ export default {
       console.log('Aysnc ' + value);
       await getRandomUserData(3).then((data) => {
         const userDataList = data.data.results;
-        let userData = userDataList.filter((user) => {
+        const userData = userDataList.filter((user) => {
           return !value.includes('example.com');
         });
-        console.log(userData);
+        //console.log(userData);
         if (userData.length > 0) {
           result = true;
         } else {

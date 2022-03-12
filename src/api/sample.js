@@ -1,4 +1,4 @@
 import axios from 'axios';
-export default function getRandUserData(size) {
+export function getRandomUserData(size) {
   return axios.get('https://randomuser.me/api/?results=' + size);
 }

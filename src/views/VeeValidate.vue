@@ -23,13 +23,13 @@
               <template #footer>{{ errorMessage }} </template>
             </n-card>
           </Field>
-          <Field v-slot="{ field, errorMessage }" name="EmailOnBlur" type="text">
+          <!--<Field v-slot="{ field, errorMessage }" name="EmailOnBlur" type="text">
             <n-card title="EmailOnBlur">
-              <n-input type="text" v-bind="field" @on-blur="isAvaibledEmail(field.value)" :model-value="field.value" show-password-on="mousedown" placeholder="Email On Blur" />
+              <n-input type="text" v-bind="field" @blur="emailOnBlurCheck(field.value)" :model-value="field.value" show-password-on="mousedown" placeholder="Email On Blur" />
               <template #footer>{{ errorMessage }} </template>
             </n-card>
-          </Field>
-          <n-button attr-type="submit">Submit</n-button>
+          </Field>-->
+          <n-button :disabled="!v.meta.valid" attr-type="submit">Submit</n-button>
         </Form>
       </div>
     </div>
@@ -52,8 +52,7 @@ export default {
   },
   created() {
     this.schema = yup.object({
-      Email: yup.string().required('Required').email('Email invalid').test('checkEmailExist', 'Exist', this.isAvaibledEmail),
-      EmailOnBlur: yup.string().required('Required').email('Email invalid'),
+      Email: yup.string().required('Required').test('checkEmailExist', 'Not Valid', this.isAvaibledEmail),
       Password: yup.string().required().min(6).max(15),
       PasswordConfirm: yup
         .string()
@@ -72,19 +71,34 @@ export default {
     };*/
   },
   methods: {
-    async isAvaibledEmail(email) {
-      console.log('Aysnc Email');
+    async isAvaibledEmail(value) {
+      let result;
+      console.log('Aysnc ' + value);
+      await getRandomUserData(3).then((data) => {
+        const userDataList = data.data.results;
+        let userData = userDataList.filter((user) => {
+          return !value.includes('example.com');
+        });
+        console.log(userData);
+        if (userData.length > 0) {
+          result = true;
+        } else {
+          result = false;
+        }
+      });
+      return result;
+    },
+    async emailOnBlurCheck(email) {
+      console.log('Aysnc EmailOnBlur:' + email);
       let userData;
-      getRandomUserData(3).then((data) => {
+      await getRandomUserData(3).then((data) => {
         const userDataList = data.data.results;
         userData = userDataList.filter((user) => {
           return email.includes('example.com');
         });
         if (userData.length > 0) {
-          console.log(false);
-          return false;
+          this.$refs.myForm.setFieldError('EmailOnBlur', 'not found');
         }
-        return true;
       });
     },
     onSubmit(values) {

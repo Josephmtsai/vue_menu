@@ -81,7 +81,7 @@ export default {
         .string()
         .required()
         .oneOf([yup.ref('Password')], 'Passwords do not match'),
-      Cities: yup.array().of(yup.string().required()).required(),
+      Cities: yup.array().test('checkArrayRequired', 'Not Valid', this.checkArrayRequired),
       UserName: yup.string().required().min(3),
       AgreeTerms: yup.bool().isTrue(),
     });
@@ -130,6 +130,10 @@ export default {
           this.$refs.myForm.setFieldError('EmailOnBlur', 'not found');
         }
       });
+    },
+    checkArrayRequired(value) {
+      if (value.length == 0) return false;
+      return true;
     },
     onSubmit(values) {
       //alert(values);

@@ -5,38 +5,63 @@
       <Field v-slot="{ field, errorMessage }" :validateOnInput="true" name="UserName" type="text">
         <n-card class="bg-gray-200 border-solid border-2" title="UserName">
           <n-input type="text" v-bind="field" show-password-on="mousedown" placeholder="UserName" />
-          <template #footer>{{ errorMessage }} </template>
+          <template #footer>
+            <n-gradient-text gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)">
+              {{ errorMessage }}
+            </n-gradient-text>
+          </template>
         </n-card>
       </Field>
       <Field v-slot="{ field, errorMessage }" :validateOnInput="true" name="Password" type="Password">
         <n-card class="bg-gray-200 border-solid border-2" title="Password">
           <n-input type="password" v-bind="field" show-password-on="mousedown" placeholder="Password" />
-          <template #footer>{{ errorMessage }} </template>
+          <template #footer
+            ><n-gradient-text gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)">
+              {{ errorMessage }}
+            </n-gradient-text>
+          </template>
         </n-card>
       </Field>
       <Field v-slot="{ field, errorMessage }" name="PasswordConfirm" type="Password">
         <n-card class="bg-gray-200 border-solid border-2" title="Password Confirm">
           <n-input type="password" v-bind="field" show-password-on="mousedown" placeholder="Password Confirm" />
-          <template #footer>{{ errorMessage }} </template>
+          <template #footer
+            ><n-gradient-text gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)">
+              {{ errorMessage }}
+            </n-gradient-text>
+          </template>
         </n-card>
       </Field>
       <Field v-slot="{ field, errorMessage }" :validateOnInput="false" :validateOnModelUpdate="false" :validateOnChange="false" name="Email" type="text">
         <n-card class="bg-gray-200 border-solid border-2" title="Email">
           <n-input type="text" :on-blur="field.onBlur" :value="field.value" :on-update:value="field.onChange" placeholder="Email" />
-          <template #footer>{{ errorMessage }} </template>
+          <template #footer
+            ><n-gradient-text gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)">
+              {{ errorMessage }}
+            </n-gradient-text>
+          </template>
         </n-card>
       </Field>
       <Field v-slot="{ field, errorMessage }" name="EmailOnBlur" type="text">
         {{ field }}
         <n-card class="bg-gray-200 border-solid border-2" title="EmailOnBlur">
-          <template #footer>{{ errorMessage }} </template>
+          <n-input type="text" v-bind="field" @blur="emailOnBlurCheck(field.value)" :model-value="field.value" show-password-on="mousedown" placeholder="Email On Blur" />
+          <template #footer
+            ><n-gradient-text gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)">
+              {{ errorMessage }}
+            </n-gradient-text>
+          </template>
         </n-card>
       </Field>
       <Field v-slot="{ field, errorMessage }" name="AgreeTerms" type="checkbox" :unchecked-value="false" :value="true">
         {{ field }}
         <n-card class="bg-gray-200 border-solid border-2" title="AgreeTerms">
           <n-checkbox v-model:checked="field.checked" :on-update:checked="field.onChange"> Agree Terms.... </n-checkbox>
-          <template #footer>{{ errorMessage }} </template>
+          <template #footer
+            ><n-gradient-text gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)">
+              {{ errorMessage }}
+            </n-gradient-text>
+          </template>
         </n-card>
       </Field>
       <Field v-slot="{ field, errorMessage }" name="Cities" type="text">
@@ -50,10 +75,15 @@
               <n-checkbox value="Shenzen" label="Shenzhen" />
             </n-space>
           </n-checkbox-group>
-          <template #footer>{{ errorMessage }} </template>
+          <template #footer
+            ><n-gradient-text gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)">
+              {{ errorMessage }}
+            </n-gradient-text>
+          </template>
         </n-card>
       </Field>
       <n-button attr-type="submit">Submit</n-button>
+      <n-button @click="resetForm()">Reset</n-button>
     </Form>
   </section>
 </template>
@@ -138,6 +168,19 @@ export default {
     onSubmit(values) {
       //alert(values);
       alert(JSON.stringify(values, null, 2));
+    },
+    resetForm() {
+      this.$refs.myForm.resetForm({
+        values: {
+          Email: '',
+          EmailOnBlur: '',
+          Password: '',
+          PasswordConfirm: '',
+          Cities: [],
+          UserName: '',
+          AgreeTerms: false,
+        },
+      });
     },
   },
 };

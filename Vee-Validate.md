@@ -84,6 +84,10 @@ async isAvaibledEmail(value) {
     }
 ```
 
+### Mutiple Field Validate
+
+![image info](./img/5.png)
+
 # Field 介紹
 
 [Props](https://vee-validate.logaretm.com/v4/api/field#props)

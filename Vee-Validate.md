@@ -1,6 +1,6 @@
 # Vee Validate 4 Guide
 
-以下介紹都是以 vue 2 options 寫法實作 + naive-ui 實作整合
+以下介紹都是以 options 寫法實作 + naive-ui 實作整合
 [Demo](https://vue-menu.herokuapp.com/)
 
 ### install

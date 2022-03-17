@@ -11,8 +11,8 @@ const config = defineConfig({
   filenameHashing: true,
   configureWebpack: (config) => {
     config.output = Object.assign(config.output, {
-      filename: 'js/[name].[hash:8].js',
-      chunkFilename: 'js/[name].[hash:8].js',
+      filename: fileName,
+      chunkFilename: chunkFilename,
     });
   },
 });

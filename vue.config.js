@@ -17,32 +17,13 @@ const config = defineConfig({
   },
 });
 
-if (isPartialView) {
+if (isPartialView && isProduction) {
   config['pages'] = {
     partialview: {
-      entry: 'src/headerFooter.js',
-      template: 'Index.html',
+      entry: 'src/main.js',
+      template: './public/index.html',
       filename: 'Index.htm',
     },
-  };
-  config['chainWebpack'] = (config) => {
-    config.plugins.delete('pwa');
-    config.plugins.delete('workbox');
-    config.plugins.delete('preload');
-    config.plugins.delete('prefetch');
-    config.plugins.delete('precache');
-    config.plugins.store.delete('prefetch-partialview'); //offline using
-    config.plugins.store.delete('preload-partialview');
-    if (config.plugins.has('extract-css')) {
-      const extractCSSPlugin = config.plugin('extract-css');
-      extractCSSPlugin &&
-        extractCSSPlugin.tap(() => [
-          {
-            filename: 'css/[name].css',
-            chunkFilename: 'css/[name].css',
-          },
-        ]);
-    }
   };
 }
 

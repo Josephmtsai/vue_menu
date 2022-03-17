@@ -1,5 +1,5 @@
 <template>
-  <header></header>
+  <HeaderComponent></HeaderComponent>
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/vee-validate">Vee Validate</router-link>
@@ -24,8 +24,23 @@
     </ul>
   </div>-->
   <router-view />
-</template>
 
+  <teleport to="#footerComponent">
+    <FooterComponent></FooterComponent>
+  </teleport>
+  AAAAA
+</template>
+<script>
+import HeaderComponent from '../src/components/HeaderComponent.vue';
+import FooterComponent from '../src/components/FooterComponent.vue';
+export default {
+  watch: {},
+  components: {
+    HeaderComponent,
+    FooterComponent
+  },
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && vue-cli-service build --mode partial_view",
+    "build": "vue-cli-service build",
     "buildProd": "vue-cli-service build --mode partial_view",
     "lint": "vue-cli-service lint",
     "start": "node server.js"

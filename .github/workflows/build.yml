@@ -30,10 +30,3 @@ jobs:
           heroku_app_name: 'vue-menu'
           heroku_email: 'mmx362003@gmail.com'
           procfile: 'web: npm start'
-      - uses: actions/checkout@v2          
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: 'vue-source'
-          heroku_email: 'mmx362003@gmail.com'
-          procfile: 'web: http-server ./dist'

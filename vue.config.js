@@ -1,7 +1,8 @@
 const { defineConfig } = require('@vue/cli-service');
 
 const isProduction = process.env.NODE_ENV === 'production';
-const isPartialView = process.env.PARTIAL_VIEW;
+const isPartialView = process.env.PARTIAL_VIEW === 'true';
+
 const fileName = isProduction && !isPartialView ? 'js/[name].[contenthash:8].js' : 'js/[name].js';
 const chunkFilename = isProduction && !isPartialView ? 'js/[name].[contenthash:8].js' : 'js/[name].js';
 const cdnPublicPath = isPartialView ? './dist/thirdparty' : './dist';
@@ -23,10 +24,12 @@ const config = defineConfig({
     },
   },
 });
+
 if (isPartialView && isProduction) {
+  console.log('PartialView');
   config['pages'] = {
-    partialview: {
-      entry: 'src/headerFooter.js',
+    index: {
+      entry: './src/headerFooter.js',
       template: './public/index.html',
       filename: 'Index.htm',
     },

@@ -9,9 +9,9 @@
   <title>
     <%= htmlWebpackPlugin.options.title %>
   </title>
-  <script defer src="https://vue-source.herokuapp.com/assets/vendor.js?v=20220318"></script>
-  <script defer src="https://vue-source.herokuapp.com/assets/index.js?v=20220318"></script>
-  <link href="https://vue-source.herokuapp.com/assets/index.css?v=20220318" rel="stylesheet">
+  <script type="module" crossorigin src="https://vue-source.herokuapp.com/assets/index.js"></script>
+  <link rel="modulepreload" href="https://vue-source.herokuapp.com/assets/vendor.js">
+  <link rel="stylesheet" href="https://vue-source.herokuapp.com/assets/index.css">
 </head>
 
 <body>

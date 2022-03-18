@@ -36,4 +36,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: 'vue-source'
           heroku_email: 'mmx362003@gmail.com'
-          procfile: 'web: npm start'
+          procfile: 'web: http-server ./dist'

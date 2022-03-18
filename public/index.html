@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <script defer src="/thirdparty/js/chunk-vendors.js?v=20220318"></script>
+    <script defer src="/thirdparty/js/app.js?v=20220318"></script>
     <link href="/thirdparty/css/app.css?v=20220318" rel="stylesheet">
   </head>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="headerComponent"></div>
+    <div id="header-component"></div>
     <div id="app"></div>
     Content End
     <div id="footerComponent"></div>
     <!-- built files will be auto injected -->
-    <script src="/thirdparty/js/chunk-vendors.js?v=20220318"></script>
-    <script src="/thirdparty/js/app.js?v=20220318"></script>
   </body>
 </html>

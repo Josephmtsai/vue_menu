@@ -26,7 +26,7 @@ const config = defineConfig({
 if (isPartialView && isProduction) {
   config['pages'] = {
     partialview: {
-      entry: 'src/main.js',
+      entry: 'src/headerFooter.js',
       template: './public/index.html',
       filename: 'Index.htm',
     },

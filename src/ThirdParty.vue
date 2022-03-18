@@ -1,9 +1,8 @@
 <template>
   <HeaderComponent></HeaderComponent>
-  <teleport to="#footerComponent">
+  <teleport to="#footer-div">
     <FooterComponent></FooterComponent>
   </teleport>
-  Content
 </template>
 <script>
 import HeaderComponent from '../src/components/HeaderComponent.vue';

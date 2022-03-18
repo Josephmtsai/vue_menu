@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
 import ThirdParty from './ThirdParty.vue';
 import './assets/tailwind.css';
-import naive from 'naive-ui';
-createApp(ThirdParty).use(naive).mount('#header-component');
+createApp(ThirdParty).mount('#header-component');

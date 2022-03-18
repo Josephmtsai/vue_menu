@@ -29,6 +29,6 @@ export default {
       url: '',
     };
   },
-  name: 'HeaderComponent',
+  name: 'FooterComponent',
 };
 </script>

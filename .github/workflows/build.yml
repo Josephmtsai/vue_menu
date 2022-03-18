@@ -4,35 +4,57 @@ on:
     branches:
       - master
 jobs:
-  build:
-    name: buildFile
-    runs-on: ubuntu-latest
-    steps:
-      - name: CheckOut Source
-        uses: actions/checkout@v2
-      - name: Setting Node env 16.13.0
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16.13.0'
-      - name: NPM Install
-        run: npm install
-      - name: NPM Build
-        run: npm run build
-  deploy:
-    name: VueMenu
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: 'vue-menu'
-          heroku_email: 'mmx362003@gmail.com'
-          procfile: 'web: npm start'
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: 'vue-source'
-          heroku_email: 'mmx362003@gmail.com'
-          procfile: 'web: npm start'
+  job-main:
+    build:
+      name: buildFile
+      runs-on: ubuntu-latest
+      steps:
+        - name: CheckOut Source
+          uses: actions/checkout@v2
+        - name: Setting Node env 16.13.0
+          uses: actions/setup-node@v2
+          with:
+            node-version: '16.13.0'
+        - name: NPM Install
+          run: npm install
+        - name: NPM Build
+          run: npm run build
+    deploy:
+      name: VueMenu
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: akhileshns/heroku-deploy@v3.12.12
+          with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: 'vue-menu'
+            heroku_email: 'mmx362003@gmail.com'
+            procfile: 'web: npm start'
+  job-source:  
+    build:
+      name: buildFile
+      runs-on: ubuntu-latest
+      steps:
+        - name: CheckOut Source
+          uses: actions/checkout@v2
+        - name: Setting Node env 16.13.0
+          uses: actions/setup-node@v2
+          with:
+            node-version: '16.13.0'
+        - name: NPM Install
+          run: npm install
+        - name: NPM Build
+          run: npm run build
+    deploy:
+      name: VueSource
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - uses: akhileshns/heroku-deploy@v3.12.12
+          with:
+            heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+            heroku_app_name: 'vue-source'
+            heroku_email: 'mmx362003@gmail.com'
+            procfile: 'web: npm start'

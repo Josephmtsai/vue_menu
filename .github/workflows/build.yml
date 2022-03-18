@@ -4,7 +4,8 @@ on:
     branches:
       - master
 jobs:
-  job-main:
+  my_first_job:
+    name: main
     build:
       name: buildFile
       runs-on: ubuntu-latest
@@ -31,7 +32,8 @@ jobs:
             heroku_app_name: 'vue-menu'
             heroku_email: 'mmx362003@gmail.com'
             procfile: 'web: npm start'
-  job-source:  
+  my_second_job:  
+    name: source
     build:
       name: buildFile
       runs-on: ubuntu-latest

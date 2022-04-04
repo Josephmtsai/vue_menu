@@ -25,9 +25,11 @@ export default {
   methods: {
     changeUV() {
       window.uv.data = 456;
+      console.log(window.uv);
     },
     changeUVByVue() {
       this.userData = 12345678;
+      console.log(window.uv);
     },
   },
 };

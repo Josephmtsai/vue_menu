@@ -1,8 +1,10 @@
 import naive from 'naive-ui';
-import { createApp } from 'vue';
+import { createApp, Vue } from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import './assets/tailwind.css';
-
-createApp(App).use(naive).use(store).use(router).mount('#app');
+import ErrorHandler from './util/errorHandler';
+let app = createApp(App).use(naive).use(store).use(router);
+app.config.errorHandler = ErrorHandler;
+app.mount('#app');

@@ -24,6 +24,7 @@
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0",
+    "xstate": "^4.32.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {

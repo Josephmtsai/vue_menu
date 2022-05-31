@@ -1,8 +1,5 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/vee-validate">Vee Validate</router-link>
-  </nav>
+  <nav><router-link to="/">Home</router-link> | <router-link to="/vee-validate">Vee Validate</router-link> | <router-link to="/vee-validate-steppers">Vee Validate Steppers</router-link> | <router-link to="/error-sample">Sample of Error</router-link></nav>
   <router-view />
 </template>
 

@@ -1,14 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView,
-  },
-  {
-    path: '/vee-validate',
     name: 'veeValidate',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

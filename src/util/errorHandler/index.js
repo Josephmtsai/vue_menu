@@ -18,5 +18,6 @@ function ErrorHandler(err, vm, info) {
     StackTrace: err.stack.toString(),
   };
   sendErrorLogRequest(errorData);
+  throw err;
 }
 export default ErrorHandler;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <n-grid cols="400:2 600:4">
+    <n-grid cols="400:2 600:5">
       <n-grid-item>
         <div class="light-green">
           <n-card title="404 request">
@@ -29,12 +29,18 @@
           </n-card>
         </div>
       </n-grid-item>
+      <n-grid-item>
+        <div class="green">
+          <TestButton></TestButton>
+        </div>
+      </n-grid-item>
     </n-grid>
   </div>
 </template>
 
 <script>
 import { testNotFound, testUnauthorized, testSystemError } from '@/api/sample';
+import TestButton from '@/components/TestButton.vue';
 export default {
   name: 'ErrorSample',
   props: {
@@ -64,5 +70,6 @@ export default {
       this.convertedData = JSON.parse(jsonData);
     },
   },
+  components: { TestButton },
 };
 </script>

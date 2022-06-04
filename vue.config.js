@@ -8,7 +8,7 @@ const config = defineConfig({
   transpileDependencies: true,
   outputDir: cdnPublicPath,
   filenameHashing: true,
-  productionSourceMap: true,
+  productionSourceMap: false,
   configureWebpack: (webpackSetting) => {
     webpackSetting.output = Object.assign(webpackSetting.output, {
       filename: fileName,

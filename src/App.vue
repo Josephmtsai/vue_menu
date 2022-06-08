@@ -1,8 +1,9 @@
 <template>
-  <nav><router-link to="/">Vee Validate</router-link>| <router-link to="/vee-validate-steppers">Vee Validate Steppers</router-link> | <router-link to="/error-sample">Sample of Error</router-link></nav>
-  <router-view />
+  <n-dialog-provider>
+    <nav><router-link to="/">Vee Validate</router-link>| <router-link to="/vee-validate-steppers">Vee Validate Steppers</router-link> | <router-link to="/error-sample">Sample of Error</router-link></nav>
+    <router-view />
+  </n-dialog-provider>
 </template>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

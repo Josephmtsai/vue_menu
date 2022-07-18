@@ -1,5 +1,3 @@
 export default function AllowItems(itemArray) {
-  return itemArray.filter((item) => {
-    return item.allow;
-  });
+  return itemArray.filter((item) => item.allow);
 }

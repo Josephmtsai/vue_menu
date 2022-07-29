@@ -37,6 +37,7 @@
     "@vue/eslint-config-airbnb": "^6.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-local-rules": "^1.3.0",
     "eslint-plugin-vue": "^8.0.3",
     "eslint-plugin-vuejs-accessibility": "^1.1.0",
     "husky": "^8.0.0",
@@ -61,8 +62,12 @@
         {
           "code": 1000
         }
-      ]
-    }
+      ],
+      "local-rules/vue-package-checker": "error"
+    },
+    "plugins": [
+      "eslint-plugin-local-rules"
+    ]
   },
   "browserslist": [
     "> 1%",
